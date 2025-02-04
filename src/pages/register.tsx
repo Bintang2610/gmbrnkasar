@@ -1,9 +1,17 @@
 import { createSignal } from 'solid-js';
 import { A, useLocation } from '@solidjs/router';
 
+const users = [
+    { storecode: "002", password: "123" },
+    { storecode: "user", password: "password" },
+  ];
+
 export default function Register() {
   const [count, setCount] = createSignal(0);
 
+  const [storecode, setUsername] = createSignal("");
+  const [password, setPassword] = createSignal("");
+  
   return (
       <section class="bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">

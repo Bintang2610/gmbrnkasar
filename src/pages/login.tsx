@@ -2,19 +2,19 @@ import { createSignal } from 'solid-js';
 import { A, useLocation } from '@solidjs/router';
 
 const users = [
-  { username: "admin", password: "123456" },
-  { username: "user", password: "password" },
+  { storecode: "002", password: "123" },
+  { storecode: "user", password: "password" },
 ];
 
 export default function Login() {
   const [count, setCount] = createSignal(0);
 
-  const [username, setUsername] = createSignal("");
+  const [storecode, setUsername] = createSignal("");
   const [password, setPassword] = createSignal("");
 
   const handleLogin = () => {
     const user = users.find(
-      (u) => u.username === username() && u.password === password()
+      (u) => u.storecode === storecode() && u.password === password()
     );
 
     if (user) {
