@@ -140,17 +140,35 @@ export default function Editemplist() {
                   <img src={karyawan.foto} class="h-24 w-24 object-contain" />
                   </th>
                   <td class="px-6 py-4">
-                    <input value={karyawan.nama} class="input"></input>
+                    <input value={karyawan.nama} />
                   </td>
-                  <td class="px-6 py-4">{karyawan.jabatan}</td>
-                  <td class="px-6 py-4">{karyawan.status}</td>
-                  <td class="px-6 py-4">{karyawan.status_aktif}</td>
-                  <td class="px-6 py-4">{karyawan.store_incharge}</td>
-                  <td class="px-6 py-4">{karyawan.area_store}</td>
-                  <td class="px-6 py-4">{karyawan.nik}</td>
-                  <td class="px-6 py-4">{karyawan.alamat}</td>
-                  <td class="px-6 py-4">{karyawan.jenis_kelamin}</td>
-                  <td class="px-6 py-4">{karyawan.nomor_hp}</td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.jabatan} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.status} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.status_aktif} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.store_incharge} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.area_store} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.nik} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.alamat} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.jenis_kelamin} />
+                  </td>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.nomor_hp} />
+                  </td>
                 </tr>
               ))}
             </tbody>
