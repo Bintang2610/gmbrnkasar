@@ -7,6 +7,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import Dashboard from './pages/dashboard';
 import Emplist from './pages/emplist';
+import Editemplist from './pages/edit-emplist';
 
 export const routes: RouteDefinition[] = [
   {
@@ -28,6 +29,10 @@ export const routes: RouteDefinition[] = [
   {
     path: '/employee',
     component: Emplist,
+  },
+  {
+    path: '/edit-employee',
+    component: Editemplist,
   },
   {
     path: '**',
