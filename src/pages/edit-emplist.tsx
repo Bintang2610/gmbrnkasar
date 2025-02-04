@@ -36,6 +36,20 @@ export default function Editemplist() {
     }
   };
 
+  const [image, setImage] = createSignal(null);
+  let fileInputRef;
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file && ["image/png", "image/jpeg", "image/jpg"].includes(file.type)) {
+      const reader = new FileReader();
+      reader.onload = () => setImage(reader.result);
+      reader.readAsDataURL(file);
+    } else {
+      alert("File harus berupa JPG, JPEG, atau PNG!");
+    }
+  };
+
   // Panggil fetchDataKaryawan saat komponen dimuat
   createEffect(() => {
     fetchDataKaryawan();
@@ -44,7 +58,7 @@ export default function Editemplist() {
   return (
     <section class="text-gray-700 p-8">
         <div class="flex items-center justify-between">
-          <div class="">
+          <div class="m-0">
           <A href="/employee" class="flex py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                 <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                     <path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/>
@@ -62,7 +76,7 @@ export default function Editemplist() {
                     </button>
                 </div>
             </form>
-            <button onClick={openModalWithDelay2} class=" py-2.5 px-5 ml-2 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 bg-grey-200 hover:bg-grey-600 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+            <button onClick={openModalWithDelay2} class="flex py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
               <svg class="w-4 h-4 text-white-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>            
             </button>
         </div>
@@ -223,7 +237,29 @@ export default function Editemplist() {
               {dataKaryawan().map((karyawan) => (
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <img src={karyawan.foto} class="h-24 w-24 object-contain" />
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg, image/jpg"
+                      ref={fileInputRef}
+                      onChange={handleFileChange}
+                      class="hidden"
+                    />
+                    <button
+                      class="relative border-2 border-gray-300 rounded-lg overflow-hidden group"
+                      onClick={() => fileInputRef.click()}
+                    >
+                      {/* Gambar yang dipilih atau placeholder */}
+                      <img
+                        src={karyawan.foto || "https://via.placeholder.com/150"}
+                        alt="Upload"
+                        class="w-24 h-24 object-cover transition duration-300 object-contain group-hover:brightness-75"
+                      />
+                      
+                      {/* Overlay teks saat hover */}
+                      <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white font-semibold">Upload Image</span>
+                      </div>
+                    </button>
                   </th>
                   <td class="px-6 py-4">
                     <input value={karyawan.nama} />
