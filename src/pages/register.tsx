@@ -48,7 +48,7 @@ export default function Register() {
   };
 
   const [storecode, setUsername] = createSignal("");
-  const [password, setPassword] = createSignal("");
+
   
   return (
     <section class="bg-gray-50 dark:bg-gray-900">
