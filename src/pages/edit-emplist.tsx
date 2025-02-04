@@ -1,10 +1,19 @@
 import { createSignal, onCleanup, createEffect } from 'solid-js';
 import { A } from '@solidjs/router';
+import DelButton from "../assets/img/delete";
 import userimg from "../assets/img/user.jpeg";
+import hapus from "../assets/img/delete.svg";
 
 
 export default function Editemplist() {
   const [dataKaryawan, setDataKaryawan] = createSignal([]);
+
+  const [isOpen, setIsOpen] = createSignal(false);
+
+  const openModalWithDelay = () => {
+    setTimeout(() => setIsOpen(true), 100); // Delay 1 detik sebelum modal muncul
+  };
+
   
   // Ambil data karyawan dari API
   const fetchDataKaryawan = async () => {
@@ -66,6 +75,12 @@ export default function Editemplist() {
                 <th scope="col" class="px-6 py-3">Alamat</th>
                 <th scope="col" class="px-6 py-3">Jenis Kelamin</th>
                 <th scope="col" class="px-6 py-3">Nomor HP</th>
+                <th scope="col" class="px-6 py-3">
+                  <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/></svg>
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -84,11 +99,79 @@ export default function Editemplist() {
                   <td class="px-6 py-4">{karyawan.alamat}</td>
                   <td class="px-6 py-4">{karyawan.jenis_kelamin}</td>
                   <td class="px-6 py-4">{karyawan.nomor_hp}</td>
-                </tr>
+                <td class="px-6 py-4">
+                    <button onClick={openModalWithDelay} class="flex py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 bg-yellow-200 hover:bg-yellow-400 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                      <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/></svg>
+                    </button>
+                  </td>
+                <td class="px-6 py-4">
+                    <button class="flex py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 bg-red-400 hover:bg-red-800 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+                    </button>
+                  </td>
+              </tr>
               ))}
             </tbody>
           </table>
         </div>
+        {isOpen() && (
+        <div class="fixed inset-0 border-dashed flex items-center justify-center bg-black bg-opacity-50">
+          <div class="relative overflow-x-auto bg-white p-6 rounded-lg shadow-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">Foto</th>
+              <th scope="col" class="px-6 py-3">Nama</th>
+              <th scope="col" class="px-6 py-3">Jabatan</th>
+              <th scope="col" class="px-6 py-3">Status</th>
+              <th scope="col" class="px-6 py-3">Status Aktif</th>
+              <th scope="col" class="px-6 py-3">Store Incharge</th>
+              <th scope="col" class="px-6 py-3">Area Store</th>
+              <th scope="col" class="px-6 py-3">NIK</th>
+              <th scope="col" class="px-6 py-3">Alamat</th>
+              <th scope="col" class="px-6 py-3">Jenis Kelamin</th>
+              <th scope="col" class="px-6 py-3">Nomor HP</th>
+            </tr>
+          </thead>
+            <tbody>
+              {dataKaryawan().map((karyawan) => (
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  <img src={karyawan.foto} class="h-24 w-24 object-contain" />
+                  </th>
+                  <td class="px-6 py-4">
+                    <input value={karyawan.nama} class="input"></input>
+                  </td>
+                  <td class="px-6 py-4">{karyawan.jabatan}</td>
+                  <td class="px-6 py-4">{karyawan.status}</td>
+                  <td class="px-6 py-4">{karyawan.status_aktif}</td>
+                  <td class="px-6 py-4">{karyawan.store_incharge}</td>
+                  <td class="px-6 py-4">{karyawan.area_store}</td>
+                  <td class="px-6 py-4">{karyawan.nik}</td>
+                  <td class="px-6 py-4">{karyawan.alamat}</td>
+                  <td class="px-6 py-4">{karyawan.jenis_kelamin}</td>
+                  <td class="px-6 py-4">{karyawan.nomor_hp}</td>
+                </tr>
+              ))}
+            </tbody>
+        </table>
+              <div class="flex">
+                <button
+                  class="mt-4 px-4 py-2 bg-green-500 text-white rounded-md"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Simpan
+                </button>
+                <button
+                  class="mt-4 ml-2 px-4 py-2 bg-red-500 text-white rounded-md"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Batal
+                </button>
+              </div>
+          </div>
+        </div>
+      )}
       </div>
     </section>
   );
