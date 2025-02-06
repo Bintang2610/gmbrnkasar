@@ -234,7 +234,6 @@ export default function Editemplist() {
             </tr>
           </thead>
             <tbody>
-              {dataKaryawan().map((karyawan) => (
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <input
@@ -250,7 +249,7 @@ export default function Editemplist() {
                     >
                       {/* Gambar yang dipilih atau placeholder */}
                       <img
-                        src={karyawan.foto || "https://via.placeholder.com/150"}
+                        src={ "https://via.placeholder.com/150"}
                         alt="Upload"
                         class="w-24 h-24 object-cover transition duration-300 object-contain group-hover:brightness-75"
                       />
@@ -262,37 +261,36 @@ export default function Editemplist() {
                     </button>
                   </th>
                   <td class="px-6 py-4">
-                    <input value={karyawan.nama} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.jabatan} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.status} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.status_aktif} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.store_incharge} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.area_store} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.nik} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.alamat} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.jenis_kelamin} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                   <td class="px-6 py-4">
-                    <input value={karyawan.nomor_hp} />
+                    <input class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm" />
                   </td>
                 </tr>
-              ))}
             </tbody>
         </table>
               <div class="flex">
