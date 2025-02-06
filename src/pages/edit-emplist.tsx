@@ -256,7 +256,7 @@ export default function Editemplist() {
                       
                       {/* Overlay teks saat hover */}
                       <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span class="text-white font-semibold">Upload Image</span>
+                        <span class="text-white font-semibold">Upload Gambar</span>
                       </div>
                     </button>
                   </th>
